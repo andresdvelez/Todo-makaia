@@ -2,51 +2,28 @@ import { useEffect, useState } from "react";
 import { Title } from "./components/title";
 import { TodoInput } from "./components/todoInput";
 import { TodoList } from "./components/todoList";
+import { createTodo, deleteTodo, getTodo, updateTodo } from "./services";
 
 function App() {
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      text: "Learn React",
-      completed: false,
-    },
-    {
-      id: 2,
-      text: "Learn Redux",
-      completed: false,
-    },
-    {
-      id: 3,
-      text: "Learn Node",
-      completed: false,
-    },
-    {
-      id: 4,
-      text: "Learn Express",
-      completed: false,
-    },
-  ]);
+  const [todos, setTodos] = useState([]);
 
   const [activeFilter, setActiveFilter] = useState("all");
 
   const [filteredTodos, setFilteredTodos] = useState(todos);
 
-  const addTodo = (title) => {
+  const addTodo = (text) => {
     const lastId = todos.length > 0 ? todos[todos.length - 1].id : 1;
 
     const newTodo = {
-      id: lastId + 1,
-      title,
+      text,
       completed: false,
     };
 
-    const todoList = [...todos];
-    todoList.push(newTodo);
-
-    setTodos(todoList);
+    createTodo(newTodo, todos, setTodos);
   };
 
   const handleSetComplete = (id) => {
+    const updatedTodos = todos.find((todo) => todo.id === id);
     const updatedList = todos.map((todo) => {
       if (todo.id === id) {
         return { ...todo, completed: !todo.completed };
@@ -54,6 +31,7 @@ function App() {
       return todo;
     });
 
+    updateTodo(id, updatedTodos);
     setTodos(updatedList);
   };
 
@@ -63,8 +41,7 @@ function App() {
   };
 
   const handleDelete = (id) => {
-    const updatedList = todos.filter((todo) => todo.id !== id);
-    setTodos(updatedList);
+    deleteTodo(id, todos, setTodos);
   };
 
   const showAllTodos = () => {
@@ -90,6 +67,13 @@ function App() {
       setFilteredTodos(completedTodos);
     }
   }, [activeFilter, todos]);
+
+  useEffect(() => {
+    getTodo().then((data) => {
+      setTodos(data);
+      setFilteredTodos(data);
+    });
+  }, []);
 
   return (
     <div className="bg-gray-900 min-h-screen font-inter h-full text-gray-100 flex items-center justify-center py-20 px-5">

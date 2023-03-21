@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { TodoFilters } from "../todoFilters/TodoFilters";
 import { Todo } from "../todo";
 
 const TodoList = ({
-  todos,
   activeFilter,
   handleSetComplete,
   handleDelete,
@@ -11,6 +10,7 @@ const TodoList = ({
   showAllTodos,
   showActiveTodos,
   showCompletedTodos,
+  todos,
 }) => {
   return (
     <div className="flex flex-col mt-7 rounded-lg overflow-hidden shadow-2xl">
