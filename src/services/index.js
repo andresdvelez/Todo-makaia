@@ -29,9 +29,19 @@ const updateTodo = async (id, updatedTodos) => {
   }
 };
 
+const clearCompletedTodos = async (todos, completedIds, setTodos) => {
+  try {
+    await axios.delete(`${TODO_URL}/${completedIds.join(",")}`);
+    const updatedTodos = todos.filter((todo) => !todo.completed);
+    setTodos(updatedTodos);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 const deleteTodo = async (id, todos, setTodos) => {
   try {
-    const res = await axios.delete(`${TODO_URL}/${id}`);
+    await axios.delete(`${TODO_URL}/${id}`);
     const updatedTodos = todos.filter((todo) => todo.id !== id);
     setTodos(updatedTodos);
   } catch (err) {
@@ -39,4 +49,4 @@ const deleteTodo = async (id, todos, setTodos) => {
   }
 };
 
-export { createTodo, getTodo, deleteTodo, updateTodo };
+export { createTodo, getTodo, deleteTodo, updateTodo, clearCompletedTodos };

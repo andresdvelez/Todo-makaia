@@ -37,7 +37,7 @@ function TodoFilters({
         </FilterButtonContainer>
         <button
           onClick={() => handleClearComplete()}
-          className="text-gray-400 hover:text-white cursor-pointer transition-all duration-300 ease-in"
+          className="text-gray-400 text-[14px] hover:text-gray-700 cursor-pointer transition-all duration-300 ease-in"
         >
           Clear Completed
         </button>

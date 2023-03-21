@@ -1,6 +1,6 @@
 const FiltersContainer = ({ children }) => {
   return (
-    <div className="flex items-center justify-between p-4 bg-gray-700 border-b border-solid border-gray-600">
+    <div className="flex items-center justify-between p-4 bg-gray-50 border-b border-solid border-gray-300">
       {children}
     </div>
   );
@@ -18,7 +18,7 @@ const FilterButton = ({ action, active, filter }) => {
     <button
       onClick={action}
       className={
-        `hover:text-white cursor-pointer transition-all duration-300 ease-in-out ` +
+        `hover:text-gray-700 cursor-pointer transition-all duration-300 text-[14px] ease-in-out ` +
         (active.toLowerCase().includes(filter.toLowerCase())
           ? "text-blue-400"
           : "text-gray-400")

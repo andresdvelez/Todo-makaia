@@ -13,13 +13,13 @@ function TodoInput({ addTodo }) {
   return (
     <div className="mt-6 relative">
       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-        <span className="border border-gray-500 border-solid p-3 rounded-full">
+        <span className="border border-gray-300 border-solid p-3 rounded-full">
           {" "}
         </span>
       </div>
       <input
         type="text"
-        className="focus:shadow-lg font-inter focus:shadow-blue-800 pl-12 w-full py-4 bg-gray-700 rounded-xl outline-none transition-all duration-300 ease-in-out"
+        className=" font-inter pl-12 w-full py-4 bg-white rounded-md outline-none text-gray-800 transition-all duration-300 ease-in-out"
         placeholder="What needs to be done?"
         value={text}
         onChange={(e) => setText(e.target.value)}

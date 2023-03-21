@@ -4,8 +4,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        anton: ["Anton", "serif"],
-        inter: ["Inter", "serif"],
+        anton: ["Roboto", "serif"],
+        inter: ["Montserrat Alternates", "serif"],
       },
     },
   },

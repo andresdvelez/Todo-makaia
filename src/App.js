@@ -2,7 +2,14 @@ import { useEffect, useState } from "react";
 import { Title } from "./components/title";
 import { TodoInput } from "./components/todoInput";
 import { TodoList } from "./components/todoList";
-import { createTodo, deleteTodo, getTodo, updateTodo } from "./services";
+import {
+  clearCompletedTodos,
+  createTodo,
+  deleteTodo,
+  getTodo,
+  updateTodo,
+} from "./services";
+import bgDesktopLight from "./assets/bg-desktop-light.jpg";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -36,8 +43,11 @@ function App() {
   };
 
   const handleClearComplete = () => {
-    const updatedList = todos.filter((todo) => !todo.completed);
-    setTodos(updatedList);
+    const completedTodos = todos.filter((todo) => todo.completed);
+    const completedIds = completedTodos.map((todo) => todo.id);
+    console.log(completedIds);
+
+    clearCompletedTodos(todos, completedIds, setTodos);
   };
 
   const handleDelete = (id) => {
@@ -76,8 +86,9 @@ function App() {
   }, []);
 
   return (
-    <div className="bg-gray-900 min-h-screen font-inter h-full text-gray-100 flex items-center justify-center py-20 px-5">
-      <div className="container flex flex-col max-w-xl">
+    <div className="bg-slate-50 min-h-screen font-inter h-full text-gray-100 flex items-center justify-center py-20 px-5 relative">
+      <img className="h-64 w-full absolute top-0" src={bgDesktopLight} alt="" />
+      <div className="container absolute top-16 z-20 flex flex-col max-w-lg">
         <Title />
         <TodoInput addTodo={addTodo} />
         <TodoList
