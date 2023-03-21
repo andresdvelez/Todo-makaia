@@ -19,8 +19,6 @@ function App() {
   const [filteredTodos, setFilteredTodos] = useState(todos);
 
   const addTodo = (text) => {
-    const lastId = todos.length > 0 ? todos[todos.length - 1].id : 1;
-
     const newTodo = {
       text,
       completed: false,
