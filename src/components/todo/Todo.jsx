@@ -25,7 +25,8 @@ const Todo = ({ todo, handleSetComplete, handleDelete }) => {
 
         <p
           className={
-            "pl-3 text-gray-700 text-[14px] " + (completed && "line-through text-gray-400")
+            "pl-3 text-gray-700 text-[14px] " +
+            (completed && "line-through text-gray-400")
           }
         >
           {text}
